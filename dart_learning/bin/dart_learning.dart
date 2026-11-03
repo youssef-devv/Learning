@@ -1,10 +1,323 @@
-import 'dart:convert';
 import 'dart:io';
 
 void main() {
 
 }
 
+
+
+
+// --- Intermediate Project 5: Grade Tracker & GPA Calculator ---
+//import 'dart:io';
+//
+// void main() {
+//   Map<String, double> grades = {};
+//
+//   while (true) {
+//     print('\n--- Student Grade Tracker ---');
+//     print('To add or update a course grade: press 1');
+//     print('To view all grades: press 2');
+//     print('To delete a course: press 3');
+//     print('To exit and calculate average: press 4');
+//
+//     String input = stdin.readLineSync() ?? '';
+//
+//     // 1. Add or Update Course
+//     if (input == '1') {
+//       print('Enter course code/name: ');
+//       String code = stdin.readLineSync() ?? '';
+//       if (code.isEmpty) {
+//         print('Course code cannot be empty!\n');
+//         continue;
+//       }
+//
+//       print('Enter grade: ');
+//       String gradeStr = stdin.readLineSync() ?? '';
+//       double? gradeDouble = double.tryParse(gradeStr);
+//
+//       if (gradeDouble == null) {
+//         print('Invalid grade number!\n');
+//         continue;
+//       }
+//
+//       grades[code] = gradeDouble;
+//       print('Grade saved successfully!\n');
+//     }
+//     // 2. View All Grades
+//     else if (input == '2') {
+//       if (grades.isEmpty) {
+//         print('No grades recorded yet!\n');
+//       } else {
+//         print('\n--- Your Course Grades ---');
+//         for (var entry in grades.entries) {
+//           print('Course: ${entry.key} | Grade: ${entry.value}');
+//         }
+//         print('');
+//       }
+//     }
+//     // 3. Delete a Course
+//     else if (input == '3') {
+//       if (grades.isEmpty) {
+//         print('No grades to delete!\n');
+//         continue;
+//       }
+//       print('Enter course code to delete: ');
+//       String code = stdin.readLineSync() ?? '';
+//
+//       if (grades.containsKey(code)) {
+//         grades.remove(code);
+//         print('Course deleted successfully!\n');
+//       } else {
+//         print('Course not found!\n');
+//       }
+//     }
+//     // 4. Exit & Calculate Average
+//     else if (input == '4') {
+//       print('Exiting program...');
+//
+//       if (grades.isEmpty) {
+//         print('No grades recorded. No average to calculate.\n');
+//       } else {
+//         double sum = 0;
+//         for (var grade in grades.values) {
+//           sum += grade; // Safely summing individual values
+//         }
+//         double average = sum / grades.length;
+//         print('Total Courses: ${grades.length}');
+//         print('Overall Average: ${average.toStringAsFixed(2)}\n');
+//       }
+//
+//       print('Goodbye!');
+//       break;
+//     }
+//     // Invalid Input Handling
+//     else {
+//       print('INVALID INPUT. Please enter 1, 2, 3, or 4.\n');
+//     }
+//   }
+// }
+
+//--- Intermediate Project 4: CLI To-Do List Manager ---
+//import 'dart:io';
+//
+// void main() {
+//   List<String?> tasks = [];
+//   String newTask = '';
+//   String delTask = '';
+//   int delTaskInt = 0;
+//   while (true) {
+//     print(
+//             'to view your tasks: press 1 \n'
+//             'to add a new task: press 2 [YOUR TASK]\n'
+//             'to delete a task press 3 [WHICH TASK TO DELETE]\n'
+//             'to exit press 4\n'
+//     );
+//     String input = stdin.readLineSync() ?? '';
+//     input.toLowerCase(); // bec if user enters EXIT instead of exit
+//
+//
+//     if (input == '1') {
+//       viewTasks(tasks);
+//     }
+//
+//     else if (input == '2') {
+//       print('new task: ');
+//       newTask = stdin.readLineSync() ?? '';
+//       addTasks(tasks, newTask);
+//     }
+//
+//     else if (input == '3') {
+//       print('Enter task number to delete: ');
+//       delTask = stdin.readLineSync() ?? '';
+//       delTaskInt = int.tryParse(delTask) ?? -1;
+//
+//       // Check if the user-entered number falls within a valid list index
+//       if (delTaskInt > 0 && delTaskInt <= tasks.length) {
+//         tasks.removeAt(delTaskInt - 1);
+//         print('Task deleted successfully!\n');
+//       } else {
+//         print('Invalid task number!\n');
+//       }
+//     }
+//
+//     else if (input == '4') {
+//       print("Alright, get lost :)");
+//       break;
+//     }
+//
+//     else { // if user types anything else
+//         print('INVALID INPUT');
+//         continue;
+//     }
+//   }
+// }
+//
+// void viewTasks(List<String?> list) {
+//   // If it's empty, print the message and leave immediately
+//   if (list.isEmpty) {
+//     print("Your Task List: \nNo Items to view!\n");
+//     return;
+//   }
+//
+//   // Otherwise, we know there are items, so safely run the loop
+//   print("Your Task List: ");
+//   for (int i = 0; i < list.length; i++) {
+//     print("[${i + 1}] ${list[i]}");
+//   }
+// }
+//
+// void addTasks(List<String?> list, String task){
+//   list.add(task);
+// }
+
+//--- Beginner Project 1: Number Guessing Game ---
+// import 'dart:io';
+// import 'package:logging/logging.dart';
+// import 'dart:math';
+// void main(){
+//   final log = Logger("GuessingSystem");
+//   Logger.root.level = Level.ALL;
+//   Logger.root.onRecord.listen((record) {
+//   print('[${record.level.name}] ${record.time}: ${record.message}');
+//   });
+//
+//   // random number
+//   final random = Random();
+//   int val = random.nextIntRange(1, 5);
+//
+//   int number = 0;
+//   // the loop and taking user input until he gets  it right
+//    while(number != val){
+//     log.info("Enter A Number: ");
+//     String? input = stdin.readLineSync(); // * bt5od string be stdn 3dy b3dha t3ml int.tryParse 34n t7wlo integer
+//     number = int.tryParse(input ?? '') ?? 0; // * 34n bdl mt3ml fo2 int? number, momken t3ml  kda
+//     if(number == val) {
+//       log.info('YOU GOT IT RIGHT!');
+//     break;} // * el break 34n te break
+//   }
+//
+// }
+//
+// extension RandomRange on Random{ //* 34n t3ml el random o kda
+//   int nextIntRange(int min, int max){
+//     return min + nextInt((max-min)+ 1);
+//   }
+// }
+
+//--- Beginner Project 2: Text Analyzer & Word Counter ---
+//import 'dart:io';
+// import 'package:logging/logging.dart';
+// import 'dart:math';
+//
+// void main(){
+//   final log = Logger('System');
+//   Logger.root.level = Level.ALL;
+//   Logger.root.onRecord.listen((record) {
+//    print('[${record.level.name}] ${record.time}: ${record.message}');
+//   });
+//   log.info('Enter text: ');
+//   String input = stdin.readLineSync() ?? '';
+//
+//   while(input.isEmpty){
+//       log.info('No number was entered, Enter again: ');
+//       input = stdin.readLineSync() ?? '';  // stdin.readLineSync(); not saving into input variable: the fix: input = stdin.readLineSync() ?? '';
+//   }
+//   calculator(input);
+// }
+//
+// void calculator(String text){
+//   print("word count: ${text.split(' ').length}, char count: ${text.length}, "
+//       "sentence count: ${text.split(RegExp(r'[.,!?]')).where((s)=>s.trim().isNotEmpty).length}");
+// }
+
+//--- Beginner Project 3: Calculator cli app ---
+//import 'dart:io';
+//
+// enum Operations { add, subtract, multiply, divide }
+//
+// void main() {
+//   // The main program loop so it can repeat until the user exits
+//   while (true) {
+//     print("\n--- CLI Calculator ---");
+//
+//     print("Enter Num1: ");
+//     int? num1 = enterNumber();
+//
+//     print("Enter operation (+, -, *, / or add, subtract, multiply, divide): ");
+//     String opt = enterOperation();
+//
+//     print("Enter Num2: ");
+//     int? num2 = enterNumber();
+//
+//     // Run the calculation
+//     calculate(num1, num2, opt);
+//
+//     // Prompt to go again or exit with bulletproof validation
+//     print("\nWanna go or do another one? [y/n]: ");
+//     String choice = (stdin.readLineSync() ?? '').toLowerCase().trim();
+//
+//     if (choice == 'y') {
+//       continue;
+//     } else if (choice == 'n') {
+//       print("Exiting calculator. Goodbye!");
+//       break;
+//     } else {
+//       // Validation loop for invalid inputs
+//       while (choice != 'y' && choice != 'n') {
+//         print("Invalid choice. Please ENTER [y/n]: ");
+//         choice = (stdin.readLineSync() ?? '').toLowerCase().trim();
+//       }
+//       if (choice == 'n') {
+//         print("Exiting calculator. Goodbye!");
+//         break;
+//       }
+//     }
+//   }
+// }
+//
+// int? enterNumber() {
+//   String input = stdin.readLineSync() ?? '';
+//   return int.tryParse(input);
+// }
+//
+// String enterOperation() {
+//   return (stdin.readLineSync() ?? '').toLowerCase().trim();
+// }
+//
+// void calculate(int? num1, num2, String opt) {
+//   // Handle case where user input a null number
+//   if (num1 == null || num2 == null) {
+//     print("Error: Invalid number input detected!");
+//     return;
+//   }
+//
+//   if (opt == Operations.add.name || opt == '+') {
+//     print("Result: $num1 + $num2 = ${num1 + num2}");
+//   }
+//   else if (opt == Operations.subtract.name || opt == '-') {
+//     print("Result: $num1 - $num2 = ${num1 - num2}");
+//   }
+//   else if (opt == Operations.multiply.name || opt == '*') {
+//     print("Result: $num1 * $num2 = ${num1 * num2}");
+//   }
+//   else if (opt == Operations.divide.name || opt == '/') {
+//     // Division-by-zero validation loop
+//     while (num2 == 0) {
+//       print("CANT DIVIDE BY ZERO, TRY AGAIN (Enter new Num2): ");
+//       num2 = enterNumber();
+//       if (num2 == null) {
+//         print("Invalid input. Aborting division.");
+//         return;
+//       }
+//     }
+//     print("Result: $num1 / $num2 = ${num1 / num2}");
+//   }
+//   else {
+//     print("Unknown operation!");
+//   }
+// }
+
+// AI tutroial & DOCS notes:
 // mtnsa4 double discount = await fetchDiscountFromServer(); el await
 // el funciton nfsha: await Future.delayed(Duration(seconds: 3));
 // mtnsa4 brdo eno double gamesize  = await el func ,me4 Future<double> da fel function nfsha bs m4 fel variable
@@ -223,5 +536,4 @@ void main() {
 // log.info('Database sync started.'); // A quiet whisper/routine note
 // log.warning('Connection is lagging.'); // A yellow caution light
 // log.severe('Database crashed!'); // A screaming red siren!
-
 
