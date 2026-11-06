@@ -1,11 +1,350 @@
 import 'dart:io';
 
-void main() {
-
+void main(){
+  
 }
 
 
+//--- Hard Capstone Project 9: CLI Personal Finance & Expense Tracker ---
+//import 'dart:io';
+//
+// void main() {
+//   List<Expense> expenses = [];
+//
+//   while (true) {
+//     print(
+//         "\n=== Personal Finance & Expense Tracker ===\n"
+//             "1. Add An Expense\n"
+//             "2. View All Expenses\n"
+//             "3. Category Summary\n"
+//             "4. remove transaction\n"
+//             "5. exit"
+//             "Choose an option: ");
+//     String input = stdin.readLineSync() ?? '';
+//
+//     // 1. Add an expense
+//     if (input == "1") {
+//       print("Enter title: ");
+//       String title = stdin.readLineSync() ?? '';
+//
+//       print("Enter amount: ");
+//       double? amount = double.tryParse(stdin.readLineSync() ?? '');
+//
+//       print("Enter category: ");
+//       String category = stdin.readLineSync() ?? '';
+//
+//       Expense object = Expense(title, amount, category);
+//       expenses.add(object);
+//       print("Expense added successfully!\n");
+//     }
+//     // 2. List logged expenses
+//     else if (input == "2") {
+//       if (expenses.isEmpty) {
+//         print("No expenses recorded yet.\n");
+//       } else {
+//         print('\n--- Your Transactions ---');
+//         for (int i = 0; i < expenses.length; i++) {
+//           print('[${i + 1}] Title: ${expenses[i].title} | Amount: \$${expenses[i].amount} | Category: ${expenses[i].category}');
+//         }
+//       }
+//     }
+//     // 3. Category Summary / Total
+//     else if (input == '3') {
+//       if (expenses.isEmpty) {
+//         print("No expenses to summarize.\n");
+//       } else {
+//         double total = 0;
+//         for (int i = 0; i < expenses.length; i++) {
+//           total += expenses[i].amount ?? 0.0;
+//         }
+//         print('\nTotal Spent: \$${total.toStringAsFixed(2)}\n');
+//       }
+//     }
+//
+//     //4. remove transaction
+//     else if (input == '4') {
+//       if (expenses.isEmpty) {
+//         print("No transactions to remove.\n");
+//         continue;
+//       }
+//
+//       print('Enter transaction number you want to remove: ');
+//       int? index = int.tryParse(stdin.readLineSync() ?? '');
+//
+//       if (index == null || index < 1 || index > expenses.length) {
+//         print('Invalid transaction number!\n');
+//       } else {
+//         expenses.removeAt(index - 1);
+//         print('Transaction removed successfully!\n');
+//       }
+//     }
+//
+//     // 5. Exit
+//     else if (input == '5') {
+//       print("Goodbye!");
+//       break;
+//     } else {
+//       print("Invalid choice. Try again.\n");
+//     }
+//   }
+// }
+//
+// class Expense {
+//   String title;
+//   double? amount;
+//   String category;
+//   Expense(this.title, this.amount, this.category);
+// }
 
+//--- Advanced Project 8: E-Commerce Shopping Cart & Product Inventory ---
+// import 'dart:io';
+//
+// class Product {
+//   String name;
+//   double price;
+//   int stock;
+//
+//   Product(this.name, this.price, this.stock);
+// }
+//
+// void main() {
+//   // Simple product catalog
+//   List<Product> catalog = [
+//     Product('Laptop', 850.00, 5),
+//     Product('Headphones', 75.50, 10),
+//     Product('Keyboard', 120.00, 7),
+//   ];
+//
+//   // Simple cart storing purchased product names and total cost
+//   List<String> cart = [];
+//   double cartTotal = 0.0;
+//
+//   while (true) {
+//     print('\n--- E-Commerce Store ---');
+//     print('1. View Products');
+//     print('2. Buy a Product');
+//     print('3. View Cart Total');
+//     print('4. Exit');
+//     print('Choose an option: ');
+//
+//     String input = stdin.readLineSync() ?? '';
+//
+//     // 1. View Products
+//     if (input == '1') {
+//       print('\n--- Available Products ---');
+//       for (int i = 0; i < catalog.length; i++) {
+//         print('[${i + 1}] ${catalog[i].name} - \$${catalog[i].price} (Stock: ${catalog[i].stock})');
+//       }
+//     }
+//     // 2. Buy a Product
+//     else if (input == '2') {
+//       print('Enter product number to buy: ');
+//       int? index = int.tryParse(stdin.readLineSync() ?? '');
+//
+//       if (index == null || index < 1 || index > catalog.length) {
+//         print('Invalid product number!\n');
+//         continue;
+//       }
+//
+//       Product selected = catalog[index - 1];
+//
+//       if (selected.stock > 0) {
+//         selected.stock--; // Reduce stock
+//         cart.add(selected.name);
+//         cartTotal += selected.price;
+//         print('Successfully added ${selected.name} to your cart!\n');
+//       } else {
+//         print('Sorry, ${selected.name} is out of stock!\n');
+//       }
+//     }
+//     // 3. View Cart Total
+//     else if (input == '3') {
+//       print('\n--- Your Cart ---');
+//       if (cart.isEmpty) {
+//         print('Your cart is empty.');
+//       } else {
+//         for (var item in cart) {
+//           print('- $item');
+//         }
+//         print('Total Cost: \$${cartTotal.toStringAsFixed(2)}');
+//       }
+//     }
+//     // 4. Exit
+//     else if (input == '4') {
+//       print('Exiting store. Goodbye!');
+//       break;
+//     } else {
+//       print('Invalid choice.');
+//     }
+//   }
+// }
+
+//--- Advanced Project 7: Library Management System (Book Catalog) ---
+// import 'dart:io';
+//
+// // 1. Blueprint for an individual Book object
+// class Book {
+//   String title;
+//   String author;
+//   bool isAvailable;
+//
+//   // Constructor with optional named parameter for availability (defaults to true)
+//   Book(this.title, this.author, {this.isAvailable = true});
+//
+//   // Display method for a single book
+//   void displayInfo(int index) {
+//     String status = isAvailable ? "Available" : "Checked Out";
+//     print("[${index + 1}] Title: '${title}' by ${author} | Status: [$status]");
+//   }
+// }
+//
+// void main() {
+//   // The library collection holding our custom Book objects
+//   List<Book> library = [];
+//
+//   while (true) {
+//     print('\n--- Library Management System ---');
+//     print('1. Add a Book');
+//     print('2. View Catalog');
+//     print('3. Check Out a Book');
+//     print('4. Return a Book');
+//     print('5. Exit');
+//     print('Choose an option (1-5): ');
+//
+//     String input = stdin.readLineSync() ?? '';
+//
+//     // 1. Add a Book
+//     if (input == '1') {
+//       print('Enter book title: ');
+//       String title = stdin.readLineSync() ?? '';
+//       if (title.isEmpty) {
+//         print('Title cannot be empty!\n');
+//         continue;
+//       }
+//
+//       print('Enter book author: ');
+//       String author = stdin.readLineSync() ?? '';
+//       if (author.isEmpty) {
+//         print('Author cannot be empty!\n');
+//         continue;
+//       }
+//
+//       // Create a new Book instance and add it to the library list
+//       library.add(Book(title, author));
+//       print('Book added successfully!\n');
+//     }
+//     // 2. View Catalog
+//     else if (input == '2') {
+//       if (library.isEmpty) {
+//         print('The library catalog is empty!\n');
+//       } else {
+//         print('\n--- Library Catalog ---');
+//         for (int i = 0; i < library.length; i++) {
+//           library[i].displayInfo(i);
+//         }
+//         print('');
+//       }
+//     }
+//     // 3. Check Out a Book
+//     else if (input == '3') {
+//       if (library.isEmpty) {
+//         print('No books available to check out!\n');
+//         continue;
+//       }
+//
+//       print('Enter the number of the book to check out: ');
+//       String choiceStr = stdin.readLineSync() ?? '';
+//       int? index = int.tryParse(choiceStr);
+//
+//       if (index == null || index < 1 || index > library.length) {
+//         print('Invalid book number!\n');
+//         continue;
+//       }
+//
+//       Book selectedBook = library[index - 1];
+//
+//       if (selectedBook.isAvailable) {
+//         selectedBook.isAvailable = false; // Mark as checked out
+//         print('Successfully checked out "${selectedBook.title}"!\n');
+//       } else {
+//         print('Sorry, "${selectedBook.title}" is already checked out!\n');
+//       }
+//     }
+//     // 4. Return a Book
+//     else if (input == '4') {
+//       if (library.isEmpty) {
+//         print('The library is empty!\n');
+//         continue;
+//       }
+//
+//       print('Enter the number of the book to return: ');
+//       String choiceStr = stdin.readLineSync() ?? '';
+//       int? index = int.tryParse(choiceStr);
+//
+//       if (index == null || index < 1 || index > library.length) {
+//         print('Invalid book number!\n');
+//         continue;
+//       }
+//
+//       Book selectedBook = library[index - 1];
+//
+//       if (!selectedBook.isAvailable) {
+//         selectedBook.isAvailable = true; // Mark as available again
+//         print('Successfully returned "${selectedBook.title}"!\n');
+//       } else {
+//         print('"${selectedBook.title}" was already marked as available!\n');
+//       }
+//     }
+//     // 5. Exit
+//     else if (input == '5') {
+//       print('Exiting library system. Goodbye!');
+//       break;
+//     }
+//     else {
+//       print('INVALID INPUT. Please enter a number between 1 and 5.\n');
+//     }
+//   }
+// }
+
+//--- Intermediate Project 6: Bank Account / ATM Simulator ---
+//void main() {
+//   Account owner = Account('Youssef', 100.00);
+//   owner.depositMoney(50); // this one works
+//   owner.checkBalance();
+//   owner.withdrawMoney(50); // this apparently adds another 50 ?
+//   owner.checkBalance();
+// }
+// class Account {
+//   String name;
+//   double balance;
+//
+//   Account(this.name, this.balance);
+//
+//   // Deposit Money
+//   void depositMoney(double inputFunds) {
+//     if (inputFunds <= 0) {
+//       print("Invalid deposit amount");
+//     } else {
+//       balance += inputFunds; // Just add directly to balance
+//       print('Successfully deposited \$$inputFunds');
+//     }
+//   }
+//
+//   // Withdraw Money
+//   void withdrawMoney(double inputWithdraw) {
+//     if (balance <= 0 || balance < inputWithdraw) {
+//       print('Not enough money to withdraw u broke bitch');
+//     } else {
+//       balance -= inputWithdraw; // Subtract directly from balance
+//       print('Successfully withdrew \$$inputWithdraw');
+//     }
+//   }
+//
+//   // Check Balance
+//   void checkBalance() {
+//     print("YOUR BALANCE IS \$${balance.toStringAsFixed(2)}");
+//   }
+// }
 
 // --- Intermediate Project 5: Grade Tracker & GPA Calculator ---
 //import 'dart:io';
